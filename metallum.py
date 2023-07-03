@@ -698,7 +698,9 @@ class Album(MetallumEntity):
         s = self._dd_text_for_label('Release date:')
 
         # Date has no day portion
-        if len(s) > 4 and ',' not in s:
+        if s == 'Unknown':
+            date = date_parser.parse('0001-01-01')
+        elif len(s) > 4 and ',' not in s:
             date = datetime.datetime.strptime(s, '%B %Y')
         else:
             date = date_parser.parse(s)
