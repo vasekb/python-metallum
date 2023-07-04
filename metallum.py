@@ -701,6 +701,8 @@ class Album(MetallumEntity):
         if s == 'Unknown':
             date = date_parser.parse('0001-01-01')
         elif len(s) > 4 and ',' not in s:
+            if s.endswith('0000'):
+                s = s.removesuffix('0000') + '0001'
             date = datetime.datetime.strptime(s, '%B %Y')
         else:
             date = date_parser.parse(s)
