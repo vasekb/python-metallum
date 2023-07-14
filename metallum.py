@@ -786,6 +786,14 @@ class Album(MetallumEntity):
             return None
         return url.split("?")[0]
 
+    @property
+    def catalog_id(self) -> Optional[str]:
+        """
+        >>> a.cover
+        '60439-1'
+        """
+        element = self._dd_element_for_label('Catalog ID:')
+        return element.text() if element else ""
 
 class LazyAlbum:
 
